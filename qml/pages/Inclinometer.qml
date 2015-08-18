@@ -38,13 +38,6 @@ Page
         }
     }
 
-    SoundEffect
-    {
-        id: tick
-        source: angleLabel.text == "90.0" ? "/usr/share/sounds/jolla-ambient/stereo/keyboard_letter.wav" :
-                        "/usr/share/sounds/jolla-ambient/stereo/keyboard_option.wav"
-    }
-
     Label
     {
         id: angleLabel
@@ -59,13 +52,21 @@ Page
     {
         id: tickTimer
         interval: 600
-        running: ((accelerometer.angle > 85.0) && (accelerometer.angle < 95.0))
+        running: ((accelerometer.angle > 85.0) && (accelerometer.angle < 95.0)) && Qt.ApplicationActive
+        triggeredOnStart: true
         repeat: true
         onTriggered:
         {
             tick.play()
             interval = 100.0 * Math.abs(90.0 - accelerometer.angle) + 50.0
         }
+    }
+
+    SoundEffect
+    {
+        id: tick
+        source: angleLabel.text == "90.0" ? "/usr/share/sounds/jolla-ambient/stereo/keyboard_letter.wav" :
+                        "/usr/share/sounds/jolla-ambient/stereo/keyboard_option.wav"
     }
 }
 
