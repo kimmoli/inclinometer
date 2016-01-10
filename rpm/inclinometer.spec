@@ -7,29 +7,26 @@ Name:       harbour-inclinometer
 %{!?qtc_make:%define qtc_make make}
 %{?qtc_builddir:%define _builddir %qtc_builddir}
 Summary:    Sailfish inclinometer
-Version:    0.0.1
+Version:    0.1.0
 Release:    1
 Group:      Qt/Qt
 License:    LICENSE
-URL:        http://example.org/
+URL:        https://github.com/kimmoli/inclinometer
 Source0:    %{name}-%{version}.tar.bz2
-Source100:  inclinometer.yaml
-Requires:   sailfishsilica-qt5 >= 0.10.9
-BuildRequires:  pkgconfig(sailfishapp) >= 1.0.2
-BuildRequires:  pkgconfig(Qt5Core)
-BuildRequires:  pkgconfig(Qt5Qml)
-BuildRequires:  pkgconfig(Qt5Quick)
+BuildArch:  noarch
+Requires:   sailfishsilica-qt5
+Requires:   libsailfishapp-launcher
+Requires:   qt5-qtdeclarative-import-sensors
+Requires:   qt5-qtdeclarative-import-multimedia
 BuildRequires:  desktop-file-utils
 
 %description
-Inclinometer for Sailfish
+Yet another inclinometer for Sailfish
 
 %prep
 %setup -q -n %{name}-%{version}
 
-%build
-
-%qtc_qmake5 
+%qtc_qmake5
 
 %qtc_make %{?_smp_mflags}
 
@@ -37,13 +34,12 @@ Inclinometer for Sailfish
 rm -rf %{buildroot}
 %qmake5_install
 
-desktop-file-install --delete-original       \
-  --dir %{buildroot}%{_datadir}/applications             \
-   %{buildroot}%{_datadir}/applications/*.desktop
+desktop-file-install --delete-original        \
+  --dir %{buildroot}%{_datadir}/applications  \
+  %{buildroot}%{_datadir}/applications/*.desktop
 
 %files
-%defattr(-,root,root,-)
-%{_bindir}
+%defattr(644,root,root,755)
 %{_datadir}/%{name}
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/icons/hicolor/86x86/apps/%{name}.png

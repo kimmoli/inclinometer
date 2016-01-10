@@ -1,9 +1,17 @@
-
 TARGET = harbour-inclinometer
 
-CONFIG += sailfishapp
+TEMPLATE = aux
 
-SOURCES += src/inclinometer.cpp
+qml.files = qml/
+qml.path = /usr/share/$${TARGET}/
+
+desktop.files = $${TARGET}.desktop
+desktop.path = /usr/share/applications
+
+icon.files = $${TARGET}.png
+icon.path = /usr/share/icons/hicolor/86x86/apps
+
+INSTALLS = qml desktop icon
 
 OTHER_FILES += \
     qml/cover/CoverPage.qml \
