@@ -106,6 +106,7 @@ Page
         id: calibItem
         anchors.centerIn: angleLabel
         rotation: 90 - accelerometer.delta;
+        z: -1
 
         Rectangle
         {
