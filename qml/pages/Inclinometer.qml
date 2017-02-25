@@ -48,6 +48,7 @@ Page
         id: bg
         anchors.fill: parent
         onPressAndHold: accelerometer.delta = 90.0 - accelerometer.rawAngle
+        onDoubleClicked: accelerometer.delta = 0.0
     }
 
     Label
