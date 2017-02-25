@@ -21,6 +21,7 @@ Page
         property double angle: 0.0
         property double x: 0.0
         property double y: 0.0
+        property double z: 0.0
 
         Behavior on x { NumberAnimation { duration: 175 } }
         Behavior on y { NumberAnimation { duration: 175 } }
@@ -29,6 +30,7 @@ Page
         {
             x = reading.x
             y = reading.y
+
             var a
 
             if ( (Math.atan(y / Math.sqrt(y * y + x * x))) >= 0 )
@@ -38,7 +40,6 @@ Page
 
             rawAngle = a * (180/Math.PI)
             angle = rawAngle + delta
-
         }
     }
 
